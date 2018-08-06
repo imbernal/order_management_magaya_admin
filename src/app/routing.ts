@@ -7,6 +7,7 @@ import { OrderComponent } from './components/orders/order/order.component';
 
 
 const routes: Routes  = [
+  // Order Routes
   {
     path: 'orders',
     component: OrderComponent,
@@ -27,8 +28,31 @@ const routes: Routes  = [
     component: OrderEditComponent,
     data: { title: 'Edit Order' }
   },
+
+
+  // Customer Routes
+  {
+    path: 'customers',
+    component: OrderComponent,
+    data: { title: 'Customer List' }
+  },
+  {
+    path: 'customer-details/:id',
+    component: OrderDetailComponent,
+    data: { title: 'Customer Details' }
+  },
+  {
+    path: 'customer-create',
+    component: OrderCreateComponent,
+    data: { title: 'Create Customer' }
+  },
+  {
+    path: 'customer-edit/:id',
+    component: OrderEditComponent,
+    data: { title: 'Edit Customer' }
+  },
   { path: '',
-    redirectTo: '/orders',
+    redirectTo: '/customers',
     pathMatch: 'full'
   }
 ];

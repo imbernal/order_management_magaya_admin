@@ -34,29 +34,3 @@
     </button>
   </div>
 </form>
-
-<!-- <form [formGroup]="orderForm" (ngSubmit)="onFormSubmit(orderForm.value)">
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Payment Type" formControlName="payment_type" [errorStateMatcher]="matcher">
-    <mat-error>
-      <span *ngIf="!orderForm.get('payment_type').valid && orderForm.get('payment_type').touched">Please enter a valid Payment Type</span>
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Customer" formControlName="customer" [errorStateMatcher]="matcher">
-    <mat-error>
-      <span *ngIf="!orderForm.get('customer').valid && orderForm.get('customer').touched">Please enter a valid Customer</span>
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Products" formControlName="products" [errorStateMatcher]="matcher">
-    <mat-error>
-      <span *ngIf="!orderForm.get('products').valid && orderForm.get('products').touched">Please enter at less one Product</span>
-    </mat-error>
-  </mat-form-field>
-  <div class="button-row">
-    <button type="submit" [disabled]="!orderForm.valid" mat-raised-button color="primary">
-      <mat-icon>save</mat-icon>
-    </button>
-  </div>
-</form> -->

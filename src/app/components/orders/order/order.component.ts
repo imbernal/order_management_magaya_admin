@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 export class OrderComponent implements OnInit {
 
   oders: any;
-  displayedColumns = ['number', 'total', 'payment_type'];
+  displayedColumns = ['number', 'total', 'payment_type' , 'date'];
   dataSource = new OrderDataSource(this._apiServices);
 
   constructor(private _apiServices: ApiService) { }

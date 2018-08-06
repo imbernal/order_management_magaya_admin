@@ -1,16 +1,16 @@
-import { Injectable } from "@angular/core";
-import { Observable, of, throwError } from "rxjs";
+import { Injectable } from '@angular/core';
+import { Observable, of, throwError } from 'rxjs';
 import {
   HttpClient,
   HttpHeaders,
   HttpErrorResponse
-} from "@angular/common/http";
-import { catchError, tap, map } from "rxjs/operators";
+} from '@angular/common/http';
+import { catchError, tap, map } from 'rxjs/operators';
 
 const httpOptions = {
-  headers: new HttpHeaders({ "Content-Type": "application/json" })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
-const apiUrl = "http://localhost:3000";
+const apiUrl = 'http://localhost:3000';
 
 @Injectable()
 export class ApiService {
@@ -18,13 +18,13 @@ export class ApiService {
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
-      console.error("An error occurred:", error.error.message);
+      console.error('An error occurred:', error.error.message);
     } else {
       console.error(
         `Backend returned code ${error.status}, ` + `body was: ${error.error}`
       );
     }
-    return throwError("Something bad happened!!!");
+    return throwError('Something bad happened!!!');
   }
 
   private extractData(res: Response) {
