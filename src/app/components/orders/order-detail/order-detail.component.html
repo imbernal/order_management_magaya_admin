@@ -1,0 +1,21 @@
+<div class="button-row">
+  <a mat-raised-button color="primary" [routerLink]="['/orders']"><mat-icon>list</mat-icon></a>
+</div>
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title><h2>{{order.number}}</h2></mat-card-title>
+    <mat-card-subtitle>{{order.date | date}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <dl>
+      <dt>Number:</dt>
+      <dd>{{order.number}}</dd>
+      <dt>Total:</dt>
+      <dd>{{order.total}}</dd>
+    </dl>
+  </mat-card-content>
+  <mat-card-actions>
+    <a mat-raised-button color="primary" [routerLink]="['/order-edit' ,  order._id ]"><mat-icon>edit</mat-icon></a>
+    <!-- <a mat-raised-button color="warn" (click)="deleteBook(order._id)"><mat-icon>delete</mat-icon></a> -->
+  </mat-card-actions>
+</mat-card>

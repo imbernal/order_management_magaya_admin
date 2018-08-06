@@ -1,0 +1,38 @@
+<div class="button-row">
+  <a mat-raised-button color="primary" [routerLink]="['/orders']">
+    <mat-icon>list</mat-icon>
+  </a>
+</div>
+<form [formGroup]="orderForm" (ngSubmit)="onFormSubmit(orderForm.value)">
+  <mat-form-field>
+    <mat-select placeholder="Payment Type" formControlName="payment_type">
+      <mat-option *ngFor="let payment of payment_type" [value]="payment">{{payment}}</mat-option>
+    </mat-select>
+    <mat-error>
+      <span *ngIf="!orderForm.get('payment_type').valid && orderForm.get('payment_type').touched">Please enter a valid Payment Type</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Customer" formControlName="customer">
+      <mat-option *ngFor="let cust of customer" [value]="cust._id">{{cust.name}}</mat-option>
+    </mat-select>
+    <mat-error>
+      <span *ngIf="!orderForm.get('customer').valid && orderForm.get('customer').touched">Please enter a Customer</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Products" formControlName="products" multiple>
+      <mat-option *ngFor="let product of products" [value]="product._id">{{product.description}}</mat-option>
+    </mat-select>
+    <mat-error>
+      <span *ngIf="!orderForm.get('products').valid && orderForm.get('products').touched">Please enter at least One Product</span>
+    </mat-error>
+  </mat-form-field>
+  <div class="button-row">
+    <button type="submit" [disabled]="!orderForm.valid" mat-raised-button color="primary">
+      <mat-icon>save</mat-icon>
+    </button>
+  </div>
+</form>
