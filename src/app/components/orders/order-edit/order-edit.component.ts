@@ -30,9 +30,6 @@ export class OrderEditComponent implements OnInit {
       customer: [null, Validators.required],
       products: [null, Validators.required]
     });
-
-    this.getCustomers();
-
   }
 
   getOrder(id) {
@@ -40,22 +37,10 @@ export class OrderEditComponent implements OnInit {
       this.id = data._id;
       this.orderForm.setValue({
         payment_type: data.payment_type,
-        customer: this.getCustomers(),
-        products: this.getProductsByIds(data.products)
+        customer: data.customer,
+        products: data.products
       });
     });
-  }
-
-  getProductsByIds(ids) {
-    return this._apiService.getProductsByIds(ids).subscribe(
-      res => console.log(res)
-    );
-  }
-
-  getCustomers() {
-    return this._apiService.getCustomers().subscribe(
-      res => this.customer = res
-    );
   }
 
   onFormSubmit(form: NgForm) {

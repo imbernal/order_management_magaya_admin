@@ -1,0 +1,29 @@
+<div class="button-row">
+  <a mat-raised-button color="primary" [routerLink]="['/customers']"><mat-icon>list</mat-icon></a>
+</div>
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title><h2>Customer Detail</h2></mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <dl>
+      <dt>Name:</dt>
+      <dd>{{customer.name}}</dd>
+      <dt>Phone:</dt>
+      <dd>{{customer.phone}}</dd>
+      <dt>Email:</dt>
+      <dd>{{customer.email}}</dd>
+      <dt>Shipping Address:</dt>
+      <dd>{{customer.shipping_address.number }}
+          {{customer.shipping_address.street }}
+          {{customer.shipping_address.city }}
+          {{customer.shipping_address.state }} ,
+          {{customer.shipping_address.country | uppercase }}
+          {{customer.shipping_address.zip }} </dd>
+    </dl>
+  </mat-card-content>
+  <mat-card-actions>
+    <a mat-raised-button color="primary" [routerLink]="['/customer-edit' ,  customer._id ]"><mat-icon>edit</mat-icon></a>
+    <a mat-raised-button color="warn" (click)="deleteCustomer(customer._id)"><mat-icon>delete</mat-icon></a>
+  </mat-card-actions>
+</mat-card>

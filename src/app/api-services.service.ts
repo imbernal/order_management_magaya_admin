@@ -107,4 +107,24 @@ export class ApiService {
       catchError(this.handleError)
     );
   }
+
+  saveCustomer(customerData): Observable<any> {
+    return this._http
+      .post(`${apiUrl}/customers`, customerData, httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  deleteCustomer(customerId): Observable<any> {
+    return this._http.delete(`${apiUrl}/customer/${customerId}`, httpOptions).pipe(
+      map(this.extractData),
+      catchError(this.handleError)
+    );
+  }
+
+  updateCustomer(customerData): Observable<any> {
+    return this._http
+      .put(`${apiUrl}/customers`, customerData, httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
 }

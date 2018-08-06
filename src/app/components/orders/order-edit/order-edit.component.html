@@ -1,6 +1,8 @@
 <div class="button-row">
-    <a mat-raised-button color="primary" [routerLink]="['/orders']"><mat-icon>list</mat-icon></a>
-  </div>
+  <a mat-raised-button color="primary" [routerLink]="['/orders']">
+    <mat-icon>list</mat-icon>
+  </a>
+</div>
 
 <form [formGroup]="orderForm" (ngSubmit)="onFormSubmit(orderForm.value)">
   <mat-form-field>

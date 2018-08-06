@@ -1,0 +1,77 @@
+<div class="button-row">
+  <a mat-raised-button color="primary" [routerLink]="['/customers']">
+    <mat-icon>list</mat-icon>
+  </a>
+</div>
+<form [formGroup]="customerForm" (ngSubmit)="onFormSubmit(customerForm.value)">
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Name" formControlName="name" [errorStateMatcher]="matcher">
+    <mat-error>
+      <span *ngIf="!customerForm.get('name').valid && customerForm.get('name').touched">Please enter Name</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Phone" formControlName="phone" [errorStateMatcher]="matcher">
+    <mat-error>
+      <span *ngIf="!customerForm.get('phone').valid && customerForm.get('phone').touched">Please enter Phone</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Email" formControlName="email" [errorStateMatcher]="matcher">
+    <mat-error>
+      <span *ngIf="!customerForm.get('email').valid && customerForm.get('email').touched">Please enter a Email</span>
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Shipping Address -->
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Street" formControlName="street" [errorStateMatcher]="matcher">
+    <mat-error>
+      <span *ngIf="!customerForm.get('street').valid && customerForm.get('street').touched">Please enter Street</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Street" formControlName="street" [errorStateMatcher]="matcher">
+    <mat-error>
+      <span *ngIf="!customerForm.get('street').valid && customerForm.get('street').touched">Please enter Street</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="city" formControlName="city" [errorStateMatcher]="matcher">
+    <mat-error>
+      <span *ngIf="!customerForm.get('city').valid && customerForm.get('city').touched">Please enter Street</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="State" formControlName="state" [errorStateMatcher]="matcher">
+    <mat-error>
+      <span *ngIf="!customerForm.get('state').valid && customerForm.get('state').touched">Please enter Street</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Country" formControlName="country" [errorStateMatcher]="matcher">
+    <mat-error>
+      <span *ngIf="!customerForm.get('country').valid && customerForm.get('country').touched">Please enter Street</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Zip Code" formControlName="zip" [errorStateMatcher]="matcher">
+    <mat-error>
+      <span *ngIf="!customerForm.get('zip').valid && customerForm.get('zip').touched">Please enter Street</span>
+    </mat-error>
+  </mat-form-field>
+
+  <div class="button-row">
+    <button type="submit" [disabled]="!customerForm.valid" mat-raised-button color="primary">
+      <mat-icon>save</mat-icon>
+    </button>
+  </div>
+</form>
