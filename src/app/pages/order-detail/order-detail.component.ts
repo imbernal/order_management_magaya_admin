@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute , Router } from '@angular/router';
-import { ApiService } from '../../../api-services.service';
+import {OrderService} from '../../services/order.service';
 
 @Component({
   selector: 'app-order-detail',
@@ -11,21 +11,21 @@ export class OrderDetailComponent implements OnInit {
 
   order: any;
 
-  constructor(private _route: ActivatedRoute , private _apiService: ApiService, private _router: Router ) { }
+  constructor(private _route: ActivatedRoute , private _orderService: OrderService, private _router: Router ) { }
 
   ngOnInit() {
     this.getOrderDetails(this._route.snapshot.params['id']);
   }
 
   getOrderDetails(orderID) {
-    this._apiService.getOrderById(orderID).subscribe(
+    this._orderService.getOrderById(orderID).subscribe(
       data => this.order = data,
       error => console.log(error)
     );
   }
 
   deleteOrder(orderId) {
-    this._apiService.deleteOrder(orderId).subscribe(
+    this._orderService.deleteOrder(orderId).subscribe(
       res => this._router.navigate(['/orders'])
     );
   }

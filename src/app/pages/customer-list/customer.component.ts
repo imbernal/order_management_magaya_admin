@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../../api-services.service';
 import { DataSource } from '@angular/cdk/collections';
-import { Observable } from 'rxjs';
+import { CustomerService } from '../../services/customer.service';
+
 
 
 @Component({
@@ -13,12 +13,12 @@ export class CustomerComponent implements OnInit {
 
   customers: any;
   displayedColumns = ['name', 'phone', 'email' , 'shipping_address'];
-  dataSource = new OrderDataSource(this._apiServices);
+  dataSource = new OrderDataSource(this._customerService);
 
-  constructor(private _apiServices: ApiService) { }
+  constructor(private _customerService: CustomerService) { }
 
   ngOnInit() {
-    this._apiServices.getCustomers().subscribe(
+    this._customerService.getCustomers().subscribe(
       data => this.customers = data,
       error => console.log(error)
     );
@@ -28,12 +28,12 @@ export class CustomerComponent implements OnInit {
 
 export class OrderDataSource extends DataSource<any> {
 
-  constructor(private _apiService) {
+  constructor(private _customerService) {
     super();
   }
 
   connect() {
-    return this._apiService.getCustomers();
+    return this._customerService.getCustomers();
   }
 
   disconnect() {}

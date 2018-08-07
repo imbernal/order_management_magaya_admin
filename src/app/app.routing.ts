@@ -1,21 +1,22 @@
 import { RouterModule, Routes } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
-
-// Orders
-import { OrderEditComponent } from './components/orders/order-edit/order-edit.component';
-import { OrderDetailComponent } from './components/orders/order-detail/order-detail.component';
-import { OrderCreateComponent } from './components/orders/order-create/order-create.component';
-import { OrderComponent } from './components/orders/order/order.component';
-
-// Customers
-
-import { CustomerComponent } from './components/customers/customer/customer.component';
-import { CustomerCreateComponent } from './components/customers/customer-create/customer-create.component';
-import { CustomerDetailComponent } from './components/customers/customer-detail/customer-detail.component';
-import { CustomerEditComponent } from './components/customers/customer-edit/customer-edit.component';
+import {
+  DashboardComponent,
+  OrderComponent,
+  OrderDetailComponent,
+  OrderCreateComponent,
+  OrderEditComponent,
+  CustomerComponent,
+  CustomerDetailComponent,
+  CustomerCreateComponent,
+  CustomerEditComponent
+} from './pages';
 
 
 const routes: Routes  = [
+  {
+    path: '' , component: DashboardComponent,
+  },
   // Order Routes
   {
     path: 'orders',
@@ -37,8 +38,6 @@ const routes: Routes  = [
     component: OrderEditComponent,
     data: { title: 'Edit Order' }
   },
-
-
   // Customer Routes
   {
     path: 'customers',
@@ -60,8 +59,8 @@ const routes: Routes  = [
     component: CustomerEditComponent,
     data: { title: 'Edit Customer' }
   },
-  { path: '',
-    redirectTo: '/customers',
+  { path: '**',
+    redirectTo: '',
     pathMatch: 'full'
   }
 ];

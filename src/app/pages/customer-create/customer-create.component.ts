@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
-import { ApiService } from '../../../api-services.service';
+import {CustomerService} from '../../services/customer.service';
 
 @Component({
   selector: 'app-customer-create',
@@ -21,7 +21,7 @@ export class CustomerCreateComponent implements OnInit {
 
   constructor(
     private _router: Router,
-    private _apiService: ApiService,
+    private _customerService: CustomerService,
     private _formBuilder: FormBuilder
   ) {}
 
@@ -39,7 +39,7 @@ export class CustomerCreateComponent implements OnInit {
   }
 
   onFormSubmit(form: NgForm) {
-    this._apiService.saveCustomer(form).subscribe(
+    this._customerService.saveCustomer(form).subscribe(
       res => {
         const id = res.customer._id;
         this._router.navigate(['/customer-details', id]);

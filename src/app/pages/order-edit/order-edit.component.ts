@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
-import { ApiService } from '../../../api-services.service';
+import {OrderService} from '../../services/order.service';
 
 @Component({
   selector: 'app-order-edit',
@@ -18,7 +18,7 @@ export class OrderEditComponent implements OnInit {
 
   constructor(
     private _router: Router,
-    private _apiService: ApiService,
+    private _orderService: OrderService,
     private _formBuilder: FormBuilder,
     private _route: ActivatedRoute
   ) { }
@@ -33,7 +33,7 @@ export class OrderEditComponent implements OnInit {
   }
 
   getOrder(id) {
-    this._apiService.getOrderById(id).subscribe(data => {
+    this._orderService.getOrderById(id).subscribe(data => {
       this.id = data._id;
       this.orderForm.setValue({
         payment_type: data.payment_type,
@@ -44,7 +44,7 @@ export class OrderEditComponent implements OnInit {
   }
 
   onFormSubmit(form: NgForm) {
-    this._apiService.updateOrder(form)
+    this._orderService.updateOrder(form)
       .subscribe(res => {
           const id = res['_id'];
           this._router.navigate(['/order-details', id]);

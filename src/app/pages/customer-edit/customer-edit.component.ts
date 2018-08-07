@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
-import { ApiService } from '../../../api-services.service';
+import {CustomerService} from '../../services/customer.service';
 
 @Component({
   selector: 'app-customer-edit',
@@ -24,7 +24,7 @@ export class CustomerEditComponent implements OnInit {
 
   constructor(
     private _router: Router,
-    private _apiService: ApiService,
+    private _customerService: CustomerService,
     private _formBuilder: FormBuilder,
     private _route: ActivatedRoute
   ) { }
@@ -44,7 +44,7 @@ export class CustomerEditComponent implements OnInit {
   }
 
   getCustomer(id) {
-    this._apiService.getCustomerById(id).subscribe(data => {
+    this._customerService.getCustomerById(id).subscribe(data => {
       this.id = data._id;
       this.customerForm.setValue({
         name: data.name,
@@ -60,7 +60,7 @@ export class CustomerEditComponent implements OnInit {
   }
 
   onFormSubmit(form: NgForm) {
-    this._apiService.updateCustomer(form)
+    this._customerService.updateCustomer(form)
       .subscribe(res => {
           const id = res['_id'];
           this._router.navigate(['/customer-details', id]);
