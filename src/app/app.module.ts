@@ -60,7 +60,7 @@ import {ProductService} from './services/product.service';
     CustomerDetailComponent,
     CustomerEditComponent,
     AdminNavComponent,
-    DashboardComponent
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

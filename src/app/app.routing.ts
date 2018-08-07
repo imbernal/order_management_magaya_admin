@@ -59,9 +59,9 @@ const routes: Routes  = [
     component: CustomerEditComponent,
     data: { title: 'Edit Customer' }
   },
-  { path: '**',
+  {
+    path: '**',
     redirectTo: '',
-    pathMatch: 'full'
   }
 ];
 
