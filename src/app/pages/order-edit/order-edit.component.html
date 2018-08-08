@@ -3,7 +3,6 @@
     <mat-icon>list</mat-icon>
   </a>
 </div>
-
 <form [formGroup]="orderForm" (ngSubmit)="onFormSubmit(orderForm.value)">
   <mat-form-field>
     <mat-select placeholder="Payment Type" formControlName="payment_type">
@@ -14,12 +13,7 @@
     </mat-error>
   </mat-form-field>
   <mat-form-field>
-    <mat-select placeholder="Customer" formControlName="customer">
-      <mat-option *ngFor="let cust of customer" [value]="cust._id">{{cust.name}}</mat-option>
-    </mat-select>
-    <mat-error>
-      <span *ngIf="!orderForm.get('customer').valid && orderForm.get('customer').touched">Please enter a Customer</span>
-    </mat-error>
+      <input matInput placeholder="Customer" formControlName="customer" [value]="product" [errorStateMatcher]="matcher">
   </mat-form-field>
 
   <mat-form-field>

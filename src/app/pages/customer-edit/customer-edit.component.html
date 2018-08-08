@@ -4,7 +4,6 @@
     </a>
   </div>
   <form [formGroup]="customerForm" (ngSubmit)="onFormSubmit(customerForm.value)">
-
     <mat-form-field class="example-full-width">
       <input matInput placeholder="Name" formControlName="name" [errorStateMatcher]="matcher">
       <mat-error>

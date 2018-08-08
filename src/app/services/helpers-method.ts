@@ -32,5 +32,4 @@ export class HelpersApiMethods implements IHelpersMethods {
         return body || {};
     }
 
-
 }

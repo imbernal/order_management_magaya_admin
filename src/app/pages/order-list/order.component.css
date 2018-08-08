@@ -1,16 +1,18 @@
-.example-container {
+.main-container{
   display: flex;
   flex-direction: column;
-  max-height: 500px;
-  min-width: 300px;
-  overflow: auto;
+  align-items: center;
+  margin-top: 5em;
 }
 
-.isbn-col {
-  flex: 0 0 100px !important;
-  white-space: unset !important;
+.button-add{
+  padding: 10px;
 }
 
-.button-row {
-  margin: 10px 0;
+.list-table {
+  width: 90%;
+}
+
+.list-table table {
+  width: 100%;
 }

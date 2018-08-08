@@ -24,6 +24,6 @@
   </mat-card-content>
   <mat-card-actions>
     <a mat-raised-button color="primary" [routerLink]="['/customer-edit' ,  customer._id ]"><mat-icon>edit</mat-icon></a>
-    <a mat-raised-button color="warn" (click)="deleteCustomer(customer._id)"><mat-icon>delete</mat-icon></a>
+    <a [disabled]="customer.isInOrder > 0" mat-raised-button color="warn" (click)="customer.isInOrder > 0 || deleteCustomer(customer._id)"><mat-icon>delete</mat-icon></a>
   </mat-card-actions>
 </mat-card>

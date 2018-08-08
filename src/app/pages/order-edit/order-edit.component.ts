@@ -35,9 +35,10 @@ export class OrderEditComponent implements OnInit {
   getOrder(id) {
     this._orderService.getOrderById(id).subscribe(data => {
       this.id = data._id;
+      console.log(data);
       this.orderForm.setValue({
         payment_type: data.payment_type,
-        customer: data.customer,
+        customer: data.customer.name,
         products: data.products
       });
     });

@@ -4,18 +4,21 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { HelpersApiMethods } from './helpers-method';
 
-
 @Injectable()
 export class ProductService {
 
-   constructor(private _http: HttpClient , private _helpers: HelpersApiMethods) {}
+  private _helpers: HelpersApiMethods;
 
-   // Products
+  constructor(private _http: HttpClient) {}
+
+  // Products
   getProducts(): Observable<any> {
-    return this._http.get(`${this._helpers.apiUrl}/products`, this._helpers.httpOptions).pipe(
-      map(this._helpers.extractData),
-      catchError(this._helpers.handleError)
-    );
+    return this._http
+      .get(`${this._helpers.apiUrl}/products`, this._helpers.httpOptions)
+      .pipe(
+        map(this._helpers.extractData),
+        catchError(this._helpers.handleError)
+      );
   }
 
   // Method to get products from list of products' ids
@@ -29,10 +32,14 @@ export class ProductService {
     // Removing last ','
     routeIds = routeIds.slice(0, -1);
 
-    return this._http.get(`${this._helpers.apiUrl}/products/${routeIds}`, this._helpers.httpOptions).pipe(
-      map(this._helpers.extractData),
-      catchError(this._helpers.handleError)
-    );
+    return this._http
+      .get(
+        `${this._helpers.apiUrl}/products/${routeIds}`,
+        this._helpers.httpOptions
+      )
+      .pipe(
+        map(this._helpers.extractData),
+        catchError(this._helpers.handleError)
+      );
   }
-
 }
