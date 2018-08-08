@@ -1,0 +1,22 @@
+<div class="button-row">
+  <a mat-raised-button color="primary" [routerLink]="['/products']"><mat-icon>list</mat-icon></a>
+</div>
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title><h2>Product Detail</h2></mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <dl>
+      <dt>Description:</dt>
+      <dd>{{product.description}}</dd>
+      <dt>Price:</dt>
+      <dd>{{product.price | currency}}</dd>
+      <dt>Weight:</dt>
+      <dd>{{product.weight}}</dd>
+    </dl>
+  </mat-card-content>
+  <mat-card-actions>
+    <a mat-raised-button color="primary" [routerLink]="['/product-edit' ,  product._id ]"><mat-icon>edit</mat-icon></a>
+    <a [disabled]="product.isInOrder > 0" mat-raised-button color="warn" (click)="product.isInOrder > 0 || deleteproduct(product._id)"><mat-icon>delete</mat-icon></a>
+  </mat-card-actions>
+</mat-card>

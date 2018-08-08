@@ -9,7 +9,8 @@ import {
   CustomerComponent,
   CustomerDetailComponent,
   CustomerCreateComponent,
-  CustomerEditComponent
+  CustomerEditComponent,
+  ProductComponent
 } from './pages';
 
 
@@ -42,6 +43,27 @@ const routes: Routes  = [
   {
     path: 'customers',
     component: CustomerComponent,
+    data: { title: 'Customer List' }
+  },
+  {
+    path: 'customer-details/:id',
+    component: CustomerDetailComponent,
+    data: { title: 'Customer Details' }
+  },
+  {
+    path: 'customer-create',
+    component: CustomerCreateComponent,
+    data: { title: 'Create Customer' }
+  },
+  {
+    path: 'customer-edit/:id',
+    component: CustomerEditComponent,
+    data: { title: 'Edit Customer' }
+  },
+  // Product Routes
+  {
+    path: 'products',
+    component: ProductComponent,
     data: { title: 'Customer List' }
   },
   {

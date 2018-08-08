@@ -1,0 +1,34 @@
+<div class="button-row">
+  <a mat-raised-button color="primary" [routerLink]="['/products']">
+    <mat-icon>list</mat-icon>
+  </a>
+</div>
+<form [formGroup]="productForm" (ngSubmit)="onFormSubmit(productForm.value)">
+
+  <mat-form-field class="">
+    <input matInput placeholder="Description" formControlName="description" [errorStateMatcher]="matcher">
+    <mat-error>
+      <span *ngIf="!productForm.get('description').valid && productForm.get('description').touched">Please enter Description</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="">
+    <input matInput placeholder="Price" formControlName="price" [errorStateMatcher]="matcher">
+    <mat-error>
+      <span *ngIf="!productForm.get('price').valid && productForm.get('price').touched">Please enter Price</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="">
+    <input matInput placeholder="Weight" formControlName="weight" [errorStateMatcher]="matcher">
+    <mat-error>
+      <span *ngIf="!productForm.get('weight').valid && productForm.get('weight').touched">Please enter a Weight</span>
+    </mat-error>
+  </mat-form-field>
+
+  <div class="button-row">
+    <button type="submit" [disabled]="!productForm.valid" mat-raised-button color="primary">
+      <mat-icon>save</mat-icon>
+    </button>
+  </div>
+</form>

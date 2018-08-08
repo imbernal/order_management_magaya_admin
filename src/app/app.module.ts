@@ -24,7 +24,11 @@ import {
   CustomerCreateComponent,
   CustomerDetailComponent,
   CustomerEditComponent,
-  DashboardComponent
+  DashboardComponent,
+  ProductCreateComponent,
+  ProductDetailComponent,
+  ProductEditComponent,
+  ProductComponent
 } from './pages';
 
 import {
@@ -59,6 +63,10 @@ import {ProductService} from './services/product.service';
     CustomerCreateComponent,
     CustomerDetailComponent,
     CustomerEditComponent,
+    ProductCreateComponent,
+    ProductDetailComponent,
+    ProductEditComponent,
+    ProductComponent,
     AdminNavComponent,
     DashboardComponent,
   ],

@@ -9,7 +9,9 @@ export class ProductService {
 
   private _helpers: HelpersApiMethods;
 
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient) {
+    this._helpers = new HelpersApiMethods();
+  }
 
   // Products
   getProducts(): Observable<any> {
@@ -35,6 +37,50 @@ export class ProductService {
     return this._http
       .get(
         `${this._helpers.apiUrl}/products/${routeIds}`,
+        this._helpers.httpOptions
+      )
+      .pipe(
+        map(this._helpers.extractData),
+        catchError(this._helpers.handleError)
+      );
+  }
+
+  getProductById(productId): Observable<any> {
+    return this._http
+      .get(
+        `${this._helpers.apiUrl}/product/${productId}`,
+        this._helpers.httpOptions
+      )
+      .pipe(
+        map(this._helpers.extractData),
+        catchError(this._helpers.handleError)
+      );
+  }
+
+  saveProduct(productData): Observable<any> {
+    return this._http
+      .post(
+        `${this._helpers.apiUrl}/products`,
+        productData,
+        this._helpers.httpOptions
+      )
+      .pipe(catchError(this._helpers.handleError));
+  }
+
+  updateProduct(productData): Observable<any> {
+    return this._http
+      .put(
+        `${this._helpers.apiUrl}/product`,
+        productData,
+        this._helpers.httpOptions
+      )
+      .pipe(catchError(this._helpers.handleError));
+  }
+
+  deleteProduct(productId): Observable<any> {
+    return this._http
+      .delete(
+        `${this._helpers.apiUrl}/product/${productId}`,
         this._helpers.httpOptions
       )
       .pipe(
