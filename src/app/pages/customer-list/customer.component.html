@@ -1,4 +1,4 @@
-
+<mat-card>Customers</mat-card>
 <div class="main-container">
   <div class="mat-elevation-z8 list-table">
       <div class="button-row button-add">
@@ -10,7 +10,9 @@
 
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element" class="isbn-col"> {{element.name}} </td>
+        <td mat-cell *matCellDef="let element" class="isbn-col">
+          <a  [routerLink]="['/customer-details/', element._id]">{{element.name}}</a>
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="phone">
@@ -32,7 +34,7 @@
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
 
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/customer-details/', row._id]"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
   </div>
 </div>

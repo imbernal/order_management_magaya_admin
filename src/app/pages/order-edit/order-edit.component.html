@@ -3,30 +3,38 @@
     <mat-icon>list</mat-icon>
   </a>
 </div>
-<form [formGroup]="orderForm" (ngSubmit)="onFormSubmit(orderForm.value)">
-  <mat-form-field>
-    <mat-select placeholder="Payment Type" formControlName="payment_type">
-      <mat-option *ngFor="let payment of payment_type" [value]="payment">{{payment}}</mat-option>
-    </mat-select>
-    <mat-error>
-      <span *ngIf="!orderForm.get('payment_type').valid && orderForm.get('payment_type').touched">Please enter a valid Payment Type</span>
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field>
-      <input matInput placeholder="Customer" formControlName="customer" [value]="product" [errorStateMatcher]="matcher">
-  </mat-form-field>
+<div class="form-main-container">
+  <mat-card>
 
-  <mat-form-field>
-    <mat-select placeholder="Products" formControlName="products" multiple>
-      <mat-option *ngFor="let product of products" [value]="product._id">{{product.description}}</mat-option>
-    </mat-select>
-    <mat-error>
-      <span *ngIf="!orderForm.get('products').valid && orderForm.get('products').touched">Please enter at least One Product</span>
-    </mat-error>
-  </mat-form-field>
-  <div class="button-row">
-    <button type="submit" [disabled]="!orderForm.valid" mat-raised-button color="primary">
-      <mat-icon>save</mat-icon>
-    </button>
-  </div>
-</form>
+    <mat-card-header>
+      <mat-card-title>Edit Order</mat-card-title>
+      <mat-card-subtitle>Owner({{customer.name}})</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="orderForm" (ngSubmit)="onFormSubmit(orderForm.value)">
+        <mat-form-field>
+          <mat-select placeholder="Payment Type" formControlName="payment_type" [(ngModel)]="currentPaymentType" [compareWith]="autoSelectPayment">
+            <mat-option *ngFor="let payment of payment_type" [value]="payment">{{payment}}</mat-option>
+          </mat-select>
+          <mat-error>
+            <span *ngIf="!orderForm.get('payment_type').valid && orderForm.get('payment_type').touched">Please enter a valid Payment Type</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="Products" formControlName="products" [(ngModel)]="myProducts" multiple [compareWith]="autoSelectProduct">
+            <mat-option *ngFor="let product of allProducts" [value]="product._id">{{product.description}}</mat-option>
+          </mat-select>
+          <mat-error>
+            <span *ngIf="!orderForm.get('products').valid && orderForm.get('products').touched">Please enter at least One Product</span>
+          </mat-error>
+        </mat-form-field>
+        <div class="button-row">
+          <button type="submit" [disabled]="!orderForm.valid" mat-raised-button color="primary">
+            <mat-icon>save</mat-icon>
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

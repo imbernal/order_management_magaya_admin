@@ -2,37 +2,34 @@ import { Injectable } from '@angular/core';
 import { Observable, of, throwError , forkJoin } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
-import { HelpersApiMethods } from './helpers-method';
+import { HelperService } from './helper.service';
 
 @Injectable()
 export class OrderService {
-  private _helpers: HelpersApiMethods;
 
-  constructor(private _http: HttpClient) {
-    this._helpers = new HelpersApiMethods();
-  }
+  constructor(private _http: HttpClient , private _helpers: HelperService) { }
 
   // ORDERS
   getOrders(): Observable<any> {
     return this._http
-      .get(`${this._helpers.apiUrl}/orders`, this._helpers.httpOptions)
+      .get(`${this._helper.apiUrl}/orders`, this._helper.httpOptions)
       .pipe(
-        map(this._helpers.extractData),
-        catchError(this._helpers.handleError)
+        map(this._helper.extractData),
+        catchError(this._helper.handleError)
       );
   }
 
   getOrderById(orderId): Observable<any> {
     return forkJoin([
-      this._http.get(`${this._helpers.apiUrl}/order/${orderId}` , this._helpers.httpOptions ).pipe(map(this._helpers.extractData)),
-      this._http.get(`${this._helpers.apiUrl}/products-order/${orderId}` , this._helpers.httpOptions ).pipe(map(this._helpers.extractData)),
-      this._http.get(`${this._helpers.apiUrl}/customer-order/${orderId}` , this._helpers.httpOptions ).pipe(map(this._helpers.extractData))
+      this._http.get(`${this._helper.apiUrl}/order/${orderId}` , this._helper.httpOptions ).pipe(map(this._helper.extractData)),
+      this._http.get(`${this._helper.apiUrl}/products/` , this._helper.httpOptions ).pipe(map(this._helper.extractData)),
+      this._http.get(`${this._helper.apiUrl}/customer-order/${orderId}` , this._helper.httpOptions ).pipe(map(this._helper.extractData))
     ]).pipe(
       map((data: any[]) => {
         const order: any = data[0];
         const products: any[] = data[1];
         const customer: any = data[2];
-        order.products = products;
+        order.allProducts = products;
         order.customer = customer;
 
         return order;
@@ -42,32 +39,32 @@ export class OrderService {
   saveOrder(orderData): Observable<any> {
     return this._http
       .post(
-        `${this._helpers.apiUrl}/orders`,
+        `${this._helper.apiUrl}/orders`,
         orderData,
-        this._helpers.httpOptions
+        this._helper.httpOptions
       )
-      .pipe(catchError(this._helpers.handleError));
+      .pipe(catchError(this._helper.handleError));
   }
 
-  updateOrder(orderData): Observable<any> {
+  updateOrder(orderData, orderId): Observable<any> {
     return this._http
       .put(
-        `${this._helpers.apiUrl}/order`,
+        `${this._helper.apiUrl}/order/${orderId}`,
         orderData,
-        this._helpers.httpOptions
+        this._helper.httpOptions
       )
-      .pipe(catchError(this._helpers.handleError));
+      .pipe(catchError(this._helper.handleError));
   }
 
   deleteOrder(orderId): Observable<any> {
     return this._http
       .delete(
-        `${this._helpers.apiUrl}/order/${orderId}`,
-        this._helpers.httpOptions
+        `${this._helper.apiUrl}/order/${orderId}`,
+        this._helper.httpOptions
       )
       .pipe(
-        map(this._helpers.extractData),
-        catchError(this._helpers.handleError)
+        map(this._helper.extractData),
+        catchError(this._helper.handleError)
       );
   }
 }

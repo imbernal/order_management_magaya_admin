@@ -6,11 +6,16 @@ import {
   OrderDetailComponent,
   OrderCreateComponent,
   OrderEditComponent,
+
   CustomerComponent,
   CustomerDetailComponent,
   CustomerCreateComponent,
   CustomerEditComponent,
-  ProductComponent
+
+  ProductComponent,
+  ProductDetailComponent,
+  ProductCreateComponent,
+  ProductEditComponent
 } from './pages';
 
 
@@ -64,22 +69,22 @@ const routes: Routes  = [
   {
     path: 'products',
     component: ProductComponent,
-    data: { title: 'Customer List' }
+    data: { title: 'Product List' }
   },
   {
-    path: 'customer-details/:id',
-    component: CustomerDetailComponent,
-    data: { title: 'Customer Details' }
+    path: 'product-details/:id',
+    component: ProductDetailComponent,
+    data: { title: 'Product Details' }
   },
   {
-    path: 'customer-create',
-    component: CustomerCreateComponent,
-    data: { title: 'Create Customer' }
+    path: 'product-create',
+    component: ProductCreateComponent,
+    data: { title: 'Create Product' }
   },
   {
-    path: 'customer-edit/:id',
-    component: CustomerEditComponent,
-    data: { title: 'Edit Customer' }
+    path: 'product-edit/:id',
+    component: ProductEditComponent,
+    data: { title: 'Edit Product' }
   },
   {
     path: '**',

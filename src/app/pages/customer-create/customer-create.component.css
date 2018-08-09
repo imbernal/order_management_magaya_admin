@@ -1,17 +1,17 @@
-.example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-  }
+.form-main-container{
+  display: flex;
+  justify-content: end;
+  margin-left: 10px;
+}
 
-  .example-full-width {
-    width: 100%;
-  }
+.form-main-container mat-card{
+  width: 50%;
+}
 
-  .example-full-width:nth-last-child() {
-    margin-bottom: 10px;
-  }
+.form-main-container mat-form-field{
+  margin-right: 1em;
+}
 
-  .button-row {
-    margin: 10px 0;
-  }
+.button-row{
+  padding: 10px;
+}

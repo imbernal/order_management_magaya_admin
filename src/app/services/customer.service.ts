@@ -2,67 +2,65 @@ import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
-import { HelpersApiMethods } from './helpers-method';
+import { HelperService } from './helper.service';
+
 
 @Injectable()
 export class CustomerService {
-  private _helpers: HelpersApiMethods;
 
-  constructor(private _http: HttpClient) {
-    this._helpers = new HelpersApiMethods();
-  }
+  constructor(private _http: HttpClient , private _helpers: HelperService) { }
 
   // Customers
   getCustomers(): Observable<any> {
     return this._http
-      .get(`${this._helpers.apiUrl}/customers`, this._helpers.httpOptions)
+      .get(`${this._helper.apiUrl}/customers`, this._helper.httpOptions)
       .pipe(
-        map(this._helpers.extractData),
-        catchError(this._helpers.handleError)
+        map(this._helper.extractData),
+        catchError(this._helper.handleError)
       );
   }
 
   getCustomerById(customerId): Observable<any> {
     return this._http
       .get(
-        `${this._helpers.apiUrl}/customer/${customerId}`,
-        this._helpers.httpOptions
+        `${this._helper.apiUrl}/customer/${customerId}`,
+        this._helper.httpOptions
       )
       .pipe(
-        map(this._helpers.extractData),
-        catchError(this._helpers.handleError)
+        map(this._helper.extractData),
+        catchError(this._helper.handleError)
       );
   }
 
   saveCustomer(customerData): Observable<any> {
     return this._http
       .post(
-        `${this._helpers.apiUrl}/customers`,
+        `${this._helper.apiUrl}/customers`,
         customerData,
-        this._helpers.httpOptions
+        this._helper.httpOptions
       )
-      .pipe(catchError(this._helpers.handleError));
+      .pipe(catchError(this._helper.handleError));
   }
 
   deleteCustomer(customerId): Observable<any> {
     return this._http
       .delete(
-        `${this._helpers.apiUrl}/customer/${customerId}`,
-        this._helpers.httpOptions
+        `${this._helper.apiUrl}/customer/${customerId}`,
+        this._helper.httpOptions
       )
       .pipe(
-        map(this._helpers.extractData),
-        catchError(this._helpers.handleError)
+        map(this._helper.extractData),
+        catchError(this._helper.handleError)
       );
   }
 
-  updateCustomer(customerData): Observable<any> {
+  updateCustomer(customerData , customerId): Observable<any> {
     return this._http
       .put(
-        `${this._helpers.apiUrl}/customers`,
+        `${this._helper.apiUrl}/customer/${customerId}`,
         customerData,
-        this._helpers.httpOptions
+        this._helper.httpOptions
       )
-      .pipe(catchError(this._helpers.handleError));
+      .pipe(catchError(this._helper.handleError));
   }
 }

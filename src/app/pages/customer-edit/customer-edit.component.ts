@@ -60,10 +60,9 @@ export class CustomerEditComponent implements OnInit {
   }
 
   onFormSubmit(form: NgForm) {
-    this._customerService.updateCustomer(form)
+    this._customerService.updateCustomer(form , this.id)
       .subscribe(res => {
-          const id = res['_id'];
-          this._router.navigate(['/customer-details', id]);
+          this._router.navigate(['/customer-details', res._id]);
         }, (err) => {
           console.log(err);
         }

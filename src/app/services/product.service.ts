@@ -2,24 +2,20 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
-import { HelpersApiMethods } from './helpers-method';
+import { HelperService } from './helper.service';
 
 @Injectable()
 export class ProductService {
 
-  private _helpers: HelpersApiMethods;
-
-  constructor(private _http: HttpClient) {
-    this._helpers = new HelpersApiMethods();
-  }
+  constructor(private _http: HttpClient , private _helper: HelperService) { }
 
   // Products
   getProducts(): Observable<any> {
     return this._http
-      .get(`${this._helpers.apiUrl}/products`, this._helpers.httpOptions)
+      .get(`${this._helper.apiUrl}/products`, this._helper.httpOptions)
       .pipe(
-        map(this._helpers.extractData),
-        catchError(this._helpers.handleError)
+        map(this._helper.extractData),
+        catchError(this._helper.handleError)
       );
   }
 
@@ -36,56 +32,56 @@ export class ProductService {
 
     return this._http
       .get(
-        `${this._helpers.apiUrl}/products/${routeIds}`,
-        this._helpers.httpOptions
+        `${this._helper.apiUrl}/products/${routeIds}`,
+        this._helper.httpOptions
       )
       .pipe(
-        map(this._helpers.extractData),
-        catchError(this._helpers.handleError)
+        map(this._helper.extractData),
+        catchError(this._helper.handleError)
       );
   }
 
   getProductById(productId): Observable<any> {
     return this._http
       .get(
-        `${this._helpers.apiUrl}/product/${productId}`,
-        this._helpers.httpOptions
+        `${this._helper.apiUrl}/product/${productId}`,
+        this._helper.httpOptions
       )
       .pipe(
-        map(this._helpers.extractData),
-        catchError(this._helpers.handleError)
+        map(this._helper.extractData),
+        catchError(this._helper.handleError)
       );
   }
 
   saveProduct(productData): Observable<any> {
     return this._http
       .post(
-        `${this._helpers.apiUrl}/products`,
+        `${this._helper.apiUrl}/products`,
         productData,
-        this._helpers.httpOptions
+        this._helper.httpOptions
       )
-      .pipe(catchError(this._helpers.handleError));
+      .pipe(catchError(this._helper.handleError));
   }
 
-  updateProduct(productData): Observable<any> {
+  updateProduct(productData , productId): Observable<any> {
     return this._http
       .put(
-        `${this._helpers.apiUrl}/product`,
+        `${this._helper.apiUrl}/product/${productId}`,
         productData,
-        this._helpers.httpOptions
+        this._helper.httpOptions
       )
-      .pipe(catchError(this._helpers.handleError));
+      .pipe(catchError(this._helper.handleError));
   }
 
   deleteProduct(productId): Observable<any> {
     return this._http
       .delete(
-        `${this._helpers.apiUrl}/product/${productId}`,
-        this._helpers.httpOptions
+        `${this._helper.apiUrl}/product/${productId}`,
+        this._helper.httpOptions
       )
       .pipe(
-        map(this._helpers.extractData),
-        catchError(this._helpers.handleError)
+        map(this._helper.extractData),
+        catchError(this._helper.handleError)
       );
   }
 }

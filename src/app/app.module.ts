@@ -42,6 +42,8 @@ import {
   MatButtonModule,
   MatCardModule,
   MatFormFieldModule,
+  MatTooltipModule,
+  MatBadgeModule,
   MatAutocompleteModule, MatToolbarModule, MatSidenavModule, MatListModule
 } from '@angular/material';
 
@@ -49,6 +51,8 @@ import {
 import {CustomerService} from './services/customer.service';
 import {OrderService} from './services/order.service';
 import {ProductService} from './services/product.service';
+import {HelperService} from './services/helper.service';
+
 
 
 
@@ -92,12 +96,15 @@ import {ProductService} from './services/product.service';
     LayoutModule,
     MatToolbarModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatTooltipModule,
+    MatBadgeModule
   ],
   providers: [
       CustomerService,
       OrderService,
-      ProductService
+      ProductService,
+      HelperService
   ],
   bootstrap: [AppComponent]
 })

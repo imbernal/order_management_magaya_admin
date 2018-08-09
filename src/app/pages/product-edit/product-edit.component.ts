@@ -30,7 +30,7 @@ export class ProductEditComponent implements OnInit {
     this.productForm = this._formBuilder.group({
       description: [null, Validators.required],
       price: [null, Validators.required],
-      weight: [null, [Validators.required, Validators.email]],
+      weight: [null, Validators.required],
     });
   }
 
@@ -38,18 +38,17 @@ export class ProductEditComponent implements OnInit {
     this._productService.getProductById(id).subscribe(data => {
       this.id = data._id;
       this.productForm.setValue({
-        description: data.name,
-        price: data.phone,
-        weight: data.email,
+        description: data.description,
+        price: data.price,
+        weight: data.weight,
       });
     });
   }
 
   onFormSubmit(form: NgForm) {
-    this._productService.updateProduct(form)
+    this._productService.updateProduct(form, this.id)
       .subscribe(res => {
-          const id = res['_id'];
-          this._router.navigate(['/product-details', id]);
+          this._router.navigate(['/product-details', res._id]);
         }, (err) => {
           console.log(err);
         }
