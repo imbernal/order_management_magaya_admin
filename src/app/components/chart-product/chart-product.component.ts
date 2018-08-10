@@ -1,31 +1,36 @@
-import { Component } from '@angular/core';
+import { Component , OnInit } from '@angular/core';
+import { StatisticService } from '../../services/statistic.service';
 
 @Component({
   selector: 'app-chart-product',
   templateUrl: './chart-product.component.html',
   styleUrls: ['./chart-product.component.css']
 })
-export class ChartProductComponent {
+export class ChartProductComponent implements OnInit {
 
-  public barChartOptions: any = {
+  topCustomer: any;
+  barChartOptions: any = {
     scaleShowVerticalLines: false,
-    responsive: false
+    responsive: true
   };
-  public barChartLabels: string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-  public barChartType: String = 'bar';
-  public barChartLegend: Boolean = true;
+  barChartLabels: string[] = [];
+  barChartType: String = "bar";
+  barChartLegend: Boolean = true;
 
-  public barChartData: any[] = [
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
-  ];
+  barChartData: any =  [{ data: [], label: "Products" }];
 
-  // events
-  public chartClicked(e: any): void {
-    console.log(e);
-  }
+  constructor(private _statisticService: StatisticService) {}
 
-  public chartHovered(e: any): void {
-    console.log(e);
+  ngOnInit() {
+    this._statisticService
+      .getTopProducts()
+      .subscribe(
+        res => {
+          this.barChartLabels = res.map( item => item.description );
+          this.barChartData[0].data = res.map( item => item.isInOrder );
+        },
+        error => console.log(error));
+
   }
 
 

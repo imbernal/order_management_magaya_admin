@@ -56,6 +56,8 @@ import {CustomerService} from './services/customer.service';
 import {OrderService} from './services/order.service';
 import {ProductService} from './services/product.service';
 import {HelperService} from './services/helper.service';
+import { StatisticService } from './services/statistic.service';
+
 
 import {
   AdminNavComponent,
@@ -114,7 +116,8 @@ import {
       CustomerService,
       OrderService,
       ProductService,
-      HelperService
+      HelperService,
+      StatisticService
   ],
   bootstrap: [AppComponent]
 })

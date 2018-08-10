@@ -39,7 +39,9 @@ export class CustomerService {
         customerData,
         this._helper.httpOptions
       )
-      .pipe(catchError(this._helper.handleError));
+      .pipe(
+        catchError(this._helper.handleError)
+      );
   }
 
   deleteCustomer(customerId): Observable<any> {

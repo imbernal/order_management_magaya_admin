@@ -1,46 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { StatisticService } from "../../services/statistic.service";
 
 @Component({
-  selector: 'app-chart-customer',
-  templateUrl: './chart-customer.component.html',
-  styleUrls: ['./chart-customer.component.css']
+  selector: "app-chart-customer",
+  templateUrl: "./chart-customer.component.html",
+  styleUrls: ["./chart-customer.component.css"]
 })
-export class ChartCustomerComponent {
+export class ChartCustomerComponent implements OnInit{
 
-  public barChartOptions: any = {
+  topCustomer: any;
+  barChartOptions: any = {
     scaleShowVerticalLines: false,
     responsive: true
   };
-  public barChartLabels: string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-  public barChartType: String = 'bar';
-  public barChartLegend: Boolean = true;
+  barChartLabels: string[] = [];
+  barChartType: String = "bar";
+  barChartLegend: Boolean = true;
 
-  public barChartData: any[] = [
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
-  ];
+  barChartData: any =  [{ data: [], label: "Customers" }];
 
-  // events
-  public chartClicked(e: any): void {
-    console.log(e);
-  }
+  constructor(private _statisticService: StatisticService) {}
 
-  public chartHovered(e: any): void {
-    console.log(e);
-  }
-
-  public randomize(): void {
-    // Only Change 3 values
-    const data = [
-      Math.round(Math.random() * 100),
-      59,
-      80,
-      (Math.random() * 100),
-      56,
-      (Math.random() * 100),
-      40];
-    const clone = JSON.parse(JSON.stringify(this.barChartData));
-    clone[0].data = data;
-    this.barChartData = clone;
+  ngOnInit() {
+    this._statisticService
+      .getTopCustomers()
+      .subscribe(
+        res => {
+          this.barChartLabels = res.map( item => item.name );
+          this.barChartData[0].data = res.map( item => item.isInOrder );
+        },
+        error => console.log(error));
 
   }
 

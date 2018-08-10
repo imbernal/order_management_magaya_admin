@@ -41,6 +41,7 @@ export class CustomerCreateComponent implements OnInit {
   onFormSubmit(form: NgForm) {
     this._customerService.saveCustomer(form).subscribe(
       res => {
+
         this._router.navigate(['/customer-details', res._id]);
       },
       err => {
