@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ChartsModule } from 'ng2-charts';
+import Chart from 'chart.js';
+
 
 import { AppComponent } from './app.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -11,7 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Components
-import { AdminNavComponent } from './components/admin-nav/admin-nav.component';
+
 
 // Pages
 
@@ -52,9 +55,10 @@ import {CustomerService} from './services/customer.service';
 import {OrderService} from './services/order.service';
 import {ProductService} from './services/product.service';
 import {HelperService} from './services/helper.service';
-
-
-
+import {
+  AdminNavComponent,
+  ChartComponent
+} from './components';
 
 @NgModule({
   declarations: [
@@ -72,7 +76,9 @@ import {HelperService} from './services/helper.service';
     ProductEditComponent,
     ProductComponent,
     AdminNavComponent,
+    ChartComponent,
     DashboardComponent,
+    ChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -98,7 +104,8 @@ import {HelperService} from './services/helper.service';
     MatSidenavModule,
     MatListModule,
     MatTooltipModule,
-    MatBadgeModule
+    MatBadgeModule,
+    ChartsModule
   ],
   providers: [
       CustomerService,

@@ -21,3 +21,12 @@ img{
 .customer-card-container span{
   margin-top: 1rem;
 }
+
+.charts{
+  width: 50%;
+}
+
+.charts canvas{
+  height: 50% !important;
+  width: 50% !important;
+}
