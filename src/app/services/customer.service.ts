@@ -8,7 +8,7 @@ import { HelperService } from './helper.service';
 @Injectable()
 export class CustomerService {
 
-  constructor(private _http: HttpClient , private _helpers: HelperService) { }
+  constructor(private _http: HttpClient , private _helper: HelperService) { }
 
   // Customers
   getCustomers(): Observable<any> {

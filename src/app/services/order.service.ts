@@ -7,7 +7,7 @@ import { HelperService } from './helper.service';
 @Injectable()
 export class OrderService {
 
-  constructor(private _http: HttpClient , private _helpers: HelperService) { }
+  constructor(private _http: HttpClient , private _helper: HelperService) { }
 
   // ORDERS
   getOrders(): Observable<any> {
