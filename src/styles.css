@@ -1,53 +1,70 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: 'Roboto', sans-serif; }
-
-.detail-main-container{
-  width: 50%;
+html,
+body {
+    height: 100%;
 }
 
-.detail-card , .button-top{
-  margin: 10px 10px;
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
 }
 
-.main-container{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 5em;
+.detail-main-container {
+    width: 50%;
 }
 
-.button-add{
-  padding: 10px;
+.detail-card,
+.button-top {
+    margin: 10px 10px;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5em;
+}
+
+.button-add {
+    padding: 10px;
 }
 
 .list-table {
-  width: 90%;
+    width: 90%;
 }
 
 .list-table table {
-  width: 100%;
+    width: 100%;
 }
 
-.list-table table a{
-  color: black;
+.list-table table a {
+    color: black;
 }
 
-.form-main-container{
-  display: flex;
-  justify-content: end;
-  margin-left: 10px;
+.form-main-container {
+    display: flex;
+    justify-content: end;
+    margin-left: 10px;
 }
 
-.form-main-container mat-card{
-  width: 60%;
+.form-main-container mat-card {
+    width: 60%;
 }
 
-.form-main-container mat-form-field{
-  margin-right: 1em;
+.form-main-container mat-form-field {
+    margin-right: 1em;
 }
 
-.button-row{
-  padding: 10px;
+.button-row {
+    padding: 10px;
+}
+
+.mat-toolbar {
+    z-index: 1;
+}
+
+.message-error {
+    margin-left: 10px;
+    color: #dc3545;
 }

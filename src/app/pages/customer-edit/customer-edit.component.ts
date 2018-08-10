@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
-import {CustomerService} from '../../services/customer.service';
+import { CustomerService } from '../../services/customer.service';
 
 @Component({
   selector: 'app-customer-edit',
@@ -21,6 +21,10 @@ export class CustomerEditComponent implements OnInit {
   state: String = '';
   country: String = '';
   zip: String = '';
+  error: {} = {
+    valid: false,
+    msg: ''
+  };
 
   constructor(
     private _router: Router,
@@ -60,12 +64,20 @@ export class CustomerEditComponent implements OnInit {
   }
 
   onFormSubmit(form: NgForm) {
-    this._customerService.updateCustomer(form , this.id)
+    this._customerService.updateCustomer(form, this.id)
       .subscribe(res => {
+        if (res.msg) {
+          this.error = {
+            valid: true,
+            msg: res.msg
+          };
+        } else {
           this._router.navigate(['/customer-details', res._id]);
-        }, (err) => {
-          console.log(err);
         }
+
+      }, (err) => {
+        console.log(err);
+      }
       );
   }
 

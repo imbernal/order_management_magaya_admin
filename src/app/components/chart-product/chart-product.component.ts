@@ -1,4 +1,4 @@
-import { Component , OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { StatisticService } from '../../services/statistic.service';
 
 @Component({
@@ -17,17 +17,18 @@ export class ChartProductComponent implements OnInit {
   barChartType: String = "bar";
   barChartLegend: Boolean = true;
 
-  barChartData: any =  [{ data: [], label: "Products" }];
+  barChartData: any = [{ data: [], label: "Products" }];
 
-  constructor(private _statisticService: StatisticService) {}
+  constructor(private _statisticService: StatisticService) { }
 
   ngOnInit() {
     this._statisticService
       .getTopProducts()
       .subscribe(
         res => {
-          this.barChartLabels = res.map( item => item.description );
-          this.barChartData[0].data = res.map( item => item.isInOrder );
+          this.barChartLabels = res.map(item => item.description);
+          this.barChartData[0].data = res.map(item => item.isInOrder);
+          console.log(this.barChartLabels);
         },
         error => console.log(error));
 

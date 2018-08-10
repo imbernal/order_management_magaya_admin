@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
-import {CustomerService} from '../../services/customer.service';
+import { CustomerService } from '../../services/customer.service';
 
 @Component({
   selector: 'app-customer-create',
@@ -18,12 +18,16 @@ export class CustomerCreateComponent implements OnInit {
   state: String = '';
   country: String = '';
   zip: String = '';
+  error: {} = {
+    valid: false,
+    msg: ''
+  };
 
   constructor(
     private _router: Router,
     private _customerService: CustomerService,
     private _formBuilder: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.customerForm = this._formBuilder.group({
@@ -39,10 +43,17 @@ export class CustomerCreateComponent implements OnInit {
   }
 
   onFormSubmit(form: NgForm) {
+    console.log(form);
     this._customerService.saveCustomer(form).subscribe(
       res => {
-
-        this._router.navigate(['/customer-details', res._id]);
+        if (res.msg) {
+          this.error = {
+            valid: true,
+            msg: res.msg
+          };
+        } else {
+          this._router.navigate(['/customer-details', res._id]);
+        }
       },
       err => {
         console.log(err);
