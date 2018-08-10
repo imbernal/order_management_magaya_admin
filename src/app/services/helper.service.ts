@@ -12,7 +12,7 @@ export class HelperService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  public apiUrl = 'http://localhost:3000';
+  public apiUrl = 'https://magaya-orders.herokuapp.com';
 
   handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
